@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\TeamGroupController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+/*
+Route::name('api.')->group(function () {
+    Route::apiResource('teamgroup', TeamGroupController::class)->only(['create']);
+});*/
+
+Route::middleware('auth')->group(function () {
+    Route::apiResource('teamgroup', TeamGroupController::class)->only(['store']);
+});
+
+//Route::apiResource('teamgroup', TeamGroupController::class)->only(['store']);

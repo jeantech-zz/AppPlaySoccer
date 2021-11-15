@@ -13,7 +13,7 @@ class CreateTeamgroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('teamgroups', function (Blueprint $table) {
+        Schema::create('team_groups', function (Blueprint $table) {
             $table->id();
             $table->foreignId('group_id')->constrained('groups')->onDelete('cascade');
             $table->foreignId('team_id')->constrained('teams')->onDelete('cascade');
