@@ -14,10 +14,25 @@ class TeamGroupTest extends TestCase
 
     public function testItCanGroupteam():void
     {
-        $this->withoutExceptionHandling();
         $user=User::factory()->create();
-        $response = $this->actingAs($user)->post('createGroupTeam');
+        $response = $this->actingAs($user)->postJson('/api/teamgroup',[
+            "level" =>  "levelOne",
+        ]);
+        $response->assertOk();
+    }
 
-        $response->assertStatus(200);
+    public function testItCreateCanGroupteam():void
+    {
+        $user=User::factory()->create();
+        $response = $this->actingAs($user)->postJson('/api/teamgroup',
+        [
+            "level" =>  "levelOne",
+            "teams" =>  [1, 2, 3],
+        ]);
+       // $response->dump();
+        $response->assertOk();
+        $response->assertSee('EsteNivelOne');
+       // $response->assertStatus(Response::HTTP_CREATED);
+       
     }
 }
