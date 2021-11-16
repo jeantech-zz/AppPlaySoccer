@@ -3,7 +3,7 @@ namespace App\Strategies\GenerationGroup;
 
 class LevelLast  implements GenerationGroupInterface {
 
-    public function getLevel(){
+    public function generateTeamGroupLevel(){
         return 'EsteNivelLast';
     }
 }

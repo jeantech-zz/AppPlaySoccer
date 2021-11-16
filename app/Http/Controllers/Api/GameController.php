@@ -8,7 +8,7 @@ use App\Repositories\TeamGroupRepositories;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class TeamGroupController extends Controller
+class GameController extends Controller
 {
     private $teamGroupRepositories;
 
@@ -20,11 +20,9 @@ class TeamGroupController extends Controller
     {
         $strategyClass = GenerationGroupValues::STRATEGY[$request->level];
         $strategy = new $strategyClass;
-        $levelis=$strategy->generateTeamGroupLevel();
-        $teamGroup = $this->teamGroupRepositories->all();
-       // $teamGroup = $this->teamGroupRepositories->teamGroupLevel(1);
-
-        return response()->json(['data' =>  $teamGroup ]);
+        $levelis=$strategy->generateGameLevel();
+       // return "ingrese a Game";
+        return response()->json(['data' =>  $levelis ]);
     }
 
 }

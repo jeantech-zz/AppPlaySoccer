@@ -2,42 +2,43 @@
 
 namespace Tests\Feature;
 
-use App\Models\Team;
-use App\Models\User;
 use App\Models\Group;
+use App\Models\Team;
+use App\Models\TeamGroup;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-
-class TeamGroupTest extends TestCase
+class GamesTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testItCanGroupteam():void
+    public function testItCanGame():void
     {
         $user=User::factory()->create();
-        $response = $this->actingAs($user)->postJson('/api/teamgroup',[
-            "level" =>  "levelOne",
-        ]);
+        $response = $this->actingAs($user)->postJson('/api/game');
+
         $response->assertOk();
+        $response->assertSee('ingrese a Game');
+
     }
 
-    public function testItCreateCanGroupteam():void
+    public function testItCreateCanGame():void
     {
         $user=User::factory()->create();
         $groups=$this->groupDataFactory();
-        $teams=Team::factory()->count(15)->create();
-        
-        $response = $this->actingAs($user)->postJson('/api/teamgroup',
+        $teams=Team::factory()->count(16)->create();
+        $teamGroup=$this->teamGroupDataFactory();
+        $response = $this->actingAs($user)->postJson('/api/game',
         [
             "level" =>  "levelOne"
         ]);
-       $response->dump();
-        $response->assertOk();
-       // $response->assertSee('EsteNivelOne');
-       // $response->assertStatus(Response::HTTP_CREATED);
        
+        $response->dump();
+        $response->assertOk();
+       // $response->assertSee('ingrese a Game');
+
     }
 
     public function groupDataFactory(): void
@@ -81,6 +82,26 @@ class TeamGroupTest extends TestCase
             "name"  => "1_8",
             "level" => 1 ,
             'group' => 8
+        ]);
+    }
+
+    public function teamGroupDataFactory(): void
+    {
+        $teamGroup=TeamGroup::factory()->create([
+            "group_id"  => "1",
+            "team_id" => 1 
+        ]);
+        $teamGroup=TeamGroup::factory()->create([
+            "group_id"  => "1",
+            "team_id" => 2 
+        ]);
+        $teamGroup=TeamGroup::factory()->create([
+            "group_id"  => "1",
+            "team_id" => 3 
+        ]);
+        $teamGroup=TeamGroup::factory()->create([
+            "group_id"  => "1",
+            "team_id" => 4 
         ]);
     }
 }

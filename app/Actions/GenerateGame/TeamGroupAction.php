@@ -1,5 +1,5 @@
 <?php
-namespace App\Actions\TeamGroup;
+namespace App\Actions\GenerateGame;
 
 use App\Models\TeamGroup;
 

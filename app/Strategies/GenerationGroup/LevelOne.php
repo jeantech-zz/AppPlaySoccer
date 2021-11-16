@@ -2,9 +2,11 @@
 
 namespace App\Strategies\GenerationGroup;
 
-use App\Actions\TeamGroup\TeamGroupAction;
+use App\Actions\GenerateGame\TeamGroupAction;
+use App\Actions\GenerateGame\GameAction;
 use App\Repositories\GroupRepositories;
 use App\Repositories\TeamRepositories;
+use App\Repositories\TeamGroupRepositories;
 use App\Strategies\GenerationGroupInterface;
 
 
@@ -12,14 +14,17 @@ class LevelOne  implements GenerationGroupInterface {
 
     private TeamRepositories $teamRepositories;
     private GroupRepositories $groupRepositories;
+    private TeamGroupRepositories $teamGroupRepositories;
 
    // public function __construct(TeamRepositories $teamRepositories, GroupRepositories $groupRepositories){
     public function __construct(){
         $this->teamRepositories = new TeamRepositories ;
         $this->groupRepositories = new GroupRepositories;
+        $this->teamGroupRepositories = new TeamGroupRepositories;
+        
     }
 
-    public function getLevel() 
+    public function generateTeamGroupLevel() 
     {
 
         $teams = $this->teamRepositories->all();
@@ -48,5 +53,32 @@ class LevelOne  implements GenerationGroupInterface {
         }
         
         return 'EsteNivelOne';
+    }
+
+    public function generateGameLevel() 
+    {
+        $teamgroups = $this->teamGroupRepositories->teamGroupLevel(1);
+
+        $i=1;
+        
+        $game= GameAction::execute([
+            "team_groups_id_A" => 1 ,
+            "status" =>  "JuegoCreado",
+        ]);
+/*
+        foreach($teamgroups as $teamgroup => $values){
+
+            
+            if($i==2){
+                $i=1;               
+            } else{
+                $game= GameAction::execute([
+                    "team_groups_id_A" => $groupId ,
+                    "status" =>  $teamId,
+                    ]);
+                $i++;      
+            }  
+        }*/
+        return $game;
     }
 }
