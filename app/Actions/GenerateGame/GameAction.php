@@ -11,9 +11,9 @@ class GameAction
         return  $teamgroup->create([
             "team_groups_id_A" =>  $data['team_groups_id_A'],
             "team_groups_id_B" =>  null,
-            "ganador" =>  null,
-            "perdedor" =>   null,
-            "empate" =>   null,
+            "wins" =>  null,
+            "losses" =>   null,
+            "draws" =>   null,
             'status' =>  $data['status'],
         
         ]);

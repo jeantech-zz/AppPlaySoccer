@@ -5,12 +5,12 @@ use App\Models\Game;
 
 class GameUpdateResultAction
 {
-    public static function execute(array $data, integer $id): void
+    public static function execute(array $data, $id): void
     {
         $teamgroup = Game::find($id);
-        $teamgroup->ganador = $data['ganador'];
-        $teamgroup->perdedor =  $data['perdedor'];
-        $teamgroup->empate =  $data['empate'];
+        $teamgroup->wins = $data['wins'];
+        $teamgroup->losses =  $data['losses'];
+        $teamgroup->draws =  $data['draws'];
         $teamgroup->status =  $data['status'];
 
         $teamgroup->save();
