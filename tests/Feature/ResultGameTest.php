@@ -14,10 +14,15 @@ use Tests\TestCase;
 class ResultGameTest extends TestCase
 {
     use RefreshDatabase;
+    
 
-    public function testItCanResultGame():void
+   public function testItCanResultGame():void
     {
-        $user=User::factory()->create();
+        $user=User::factory()->create();        
+        $teams=Team::factory()->count(16)->create();
+        $groups=$this->groupDataFactory();
+        $teamGroup=$this->teamGroupDataFactory();
+        $game=$this->gameDataFactory();
         $response = $this->actingAs($user)->postJson('/api/resultgame',[
             "level" =>  "levelOne",
         ]);
@@ -29,9 +34,10 @@ class ResultGameTest extends TestCase
 
     public function testItCreateCanResultGame():void
     {
-        $user=User::factory()->create();        
+        $user=User::factory()->create();      
+        $groups=$this->groupDataFactory();  
         $teams=Team::factory()->count(16)->create();
-        $groups=$this->groupDataFactory();
+       
         $teamGroup=$this->teamGroupDataFactory();
         $game=$this->gameDataFactory();
         
@@ -40,7 +46,7 @@ class ResultGameTest extends TestCase
         ]);
 
         $response->assertOk();
-        $response->dump();
+       // $response->dump();
         //$response->assertSee('RestultadoGame');
 
     }
@@ -87,24 +93,25 @@ class ResultGameTest extends TestCase
             "level" => 1 ,
             'group' => 8
         ]);
+        
     }
 
     public function teamGroupDataFactory(): void
     {
         $teamGroup=TeamGroup::factory()->create([
-            "group_id"  => "1",
+            "group_id"  => 1,
             "team_id" => 1 
         ]);
         $teamGroup=TeamGroup::factory()->create([
-            "group_id"  => "1",
+            "group_id"  => 1,
             "team_id" => 2 
         ]);
         $teamGroup=TeamGroup::factory()->create([
-            "group_id"  => "1",
+            "group_id"  => 1,
             "team_id" => 3 
         ]);
         $teamGroup=TeamGroup::factory()->create([
-            "group_id"  => "1",
+            "group_id"  => 1,
             "team_id" => 4 
         ]);
     }

@@ -37,7 +37,7 @@ class GamesTest extends TestCase
             "level" =>  "levelOne"
         ]);
        
-        $response->dump();
+       //$response->dump();
         $response->assertOk();
        // $response->assertSee('ingrese a Game');
 

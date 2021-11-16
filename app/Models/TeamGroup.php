@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class TeamGroup extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['group_id','team_id'];
 }
