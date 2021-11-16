@@ -14,7 +14,6 @@ use Tests\TestCase;
 class ResultGameTest extends TestCase
 {
     use RefreshDatabase;
-    
 
    public function testItCanResultGame():void
     {
@@ -34,10 +33,9 @@ class ResultGameTest extends TestCase
 
     public function testItCreateCanResultGame():void
     {
-        $user=User::factory()->create();      
-        $groups=$this->groupDataFactory();  
+        $user=User::factory()->create();        
         $teams=Team::factory()->count(16)->create();
-       
+        $groups=$this->groupDataFactory();
         $teamGroup=$this->teamGroupDataFactory();
         $game=$this->gameDataFactory();
         
@@ -93,7 +91,7 @@ class ResultGameTest extends TestCase
             "level" => 1 ,
             'group' => 8
         ]);
-        
+
     }
 
     public function teamGroupDataFactory(): void
