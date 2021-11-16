@@ -20,10 +20,11 @@ class TeamGroupController extends Controller
     {
         $strategyClass = GenerationGroupValues::STRATEGY[$request->level];
         $strategy = new $strategyClass;
-        $levelis=$strategy->getLevel();
-        $teams = $this->teamGroupRepositories->all();
+        $levelis=$strategy->generateTeamGroupLevel();
+        $teamGroup = $this->teamGroupRepositories->all();
+       // $teamGroup = $this->teamGroupRepositories->teamGroupLevel(1);
 
-        return response()->json(['data' =>  $teams ]);
+        return response()->json(['data' =>  $teamGroup ]);
     }
 
 }

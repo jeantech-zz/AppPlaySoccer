@@ -4,5 +4,5 @@ namespace App\Strategies;
 
 interface GenerationGroupInterface {
     
-    public function getLevel();
+    public function generateTeamGroupLevel();
 }

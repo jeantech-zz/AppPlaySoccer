@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\TeamGroupController;
+use App\Http\Controllers\Api\GameController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ Route::name('api.')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::apiResource('teamgroup', TeamGroupController::class)->only(['store']);
+    Route::apiResource('game', GameController::class)->only(['store']);
 });
 
 //Route::apiResource('teamgroup', TeamGroupController::class)->only(['store']);

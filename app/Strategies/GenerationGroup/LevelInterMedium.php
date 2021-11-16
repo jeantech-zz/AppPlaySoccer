@@ -3,7 +3,7 @@ namespace App\Strategies\GenerationGroup;
 
 class LevelLMedium  implements GenerationGroupInterface {
 
-    public function getLevel(){
+    public function generateTeamGroupLevel(){
         return 'EsteNivelMedium';
     }
 }

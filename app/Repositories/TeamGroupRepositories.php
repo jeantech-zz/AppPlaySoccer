@@ -11,7 +11,18 @@ class TeamGroupRepositories{
         $this->model = new TeamGroup ();
     }
 
-    public function all(){
+    public function all() 
+    {
        return  $this->model->get();
     }
+
+    public function teamGroupLevel($level) 
+    {
+        return  $this->model
+        ->leftjoin('groups', 'groups.id', '=', 'team_groups.group_id')
+        ->where('groups.level','=',$level)
+        ->select('team_groups.*','groups.level')
+        ->get();
+
+     }
 }
