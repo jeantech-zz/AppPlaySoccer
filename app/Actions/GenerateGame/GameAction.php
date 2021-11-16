@@ -8,13 +8,14 @@ class GameAction
     public static function execute(array $data)
     {
         $teamgroup = new Game();
-        $teamgroup->team_groups_id_A = $data['team_groups_id_A'];
-      /* $teamgroup->team_groups_id_B = null;
-        $teamgroup->ganador = null;
-        $teamgroup->perdedor =  null;
-        $teamgroup->empate =  null;*/
-        $teamgroup->status =  $data['status'];
-
-        return  $teamgroup->save();
+        return  $teamgroup->create([
+            "team_groups_id_A" =>  $data['team_groups_id_A'],
+            "team_groups_id_B" =>  null,
+            "ganador" =>  null,
+            "perdedor" =>   null,
+            "empate" =>   null,
+            'status' =>  $data['status'],
+        
+        ]);
     }
 }

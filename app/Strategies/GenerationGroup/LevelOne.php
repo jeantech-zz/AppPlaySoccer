@@ -4,6 +4,7 @@ namespace App\Strategies\GenerationGroup;
 
 use App\Actions\GenerateGame\TeamGroupAction;
 use App\Actions\GenerateGame\GameAction;
+use App\Actions\GenerateGame\GameUpdateAction;
 use App\Repositories\GroupRepositories;
 use App\Repositories\TeamRepositories;
 use App\Repositories\TeamGroupRepositories;
@@ -16,7 +17,6 @@ class LevelOne  implements GenerationGroupInterface {
     private GroupRepositories $groupRepositories;
     private TeamGroupRepositories $teamGroupRepositories;
 
-   // public function __construct(TeamRepositories $teamRepositories, GroupRepositories $groupRepositories){
     public function __construct(){
         $this->teamRepositories = new TeamRepositories ;
         $this->groupRepositories = new GroupRepositories;
@@ -60,25 +60,30 @@ class LevelOne  implements GenerationGroupInterface {
         $teamgroups = $this->teamGroupRepositories->teamGroupLevel(1);
 
         $i=1;
-        
-        $game= GameAction::execute([
+        $idGame;
+        /*$game= GameAction::execute([
             "team_groups_id_A" => 1 ,
             "status" =>  "JuegoCreado",
         ]);
-/*
-        foreach($teamgroups as $teamgroup => $values){
+        $idGame = $game->id;*/
 
-            
-            if($i==2){
-                $i=1;               
+        foreach($teamgroups as $teamgroup => $values){
+            $teamGroupId = $values->id;
+            if($i==2){  
+                $game= GameUpdateAction::execute([
+                    "team_groups_id_B" => $teamGroupId ,
+                    "status" =>  "JuegoCreadoVs",
+                ],  $idGame); 
+                $i=1;            
             } else{
                 $game= GameAction::execute([
-                    "team_groups_id_A" => $groupId ,
-                    "status" =>  $teamId,
-                    ]);
+                    "team_groups_id_A" => $teamGroupId ,
+                    "status" =>  "JuegoCreado",
+                ]);
+                $idGame = $game->id;
                 $i++;      
             }  
-        }*/
-        return $game;
+        }
+       // return $idGame;
     }
 }
