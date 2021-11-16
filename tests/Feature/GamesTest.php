@@ -17,10 +17,12 @@ class GamesTest extends TestCase
     public function testItCanGame():void
     {
         $user=User::factory()->create();
-        $response = $this->actingAs($user)->postJson('/api/game');
+        $response = $this->actingAs($user)->postJson('/api/game',[
+            "level" =>  "levelOne"
+        ]);
 
         $response->assertOk();
-        $response->assertSee('ingrese a Game');
+      //  $response->assertSee('ingrese a Game');
 
     }
 

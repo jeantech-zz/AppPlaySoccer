@@ -2,42 +2,47 @@
 
 namespace Tests\Feature;
 
+use App\Models\Game;
 use App\Models\Group;
 use App\Models\Team;
+use App\Models\TeamGroup;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-
-class TeamGroupTest extends TestCase
+class ResultGameTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testItCanGroupteam():void
+    public function testItCanResultGame():void
     {
         $user=User::factory()->create();
-        $response = $this->actingAs($user)->postJson('/api/teamgroup',[
+        $response = $this->actingAs($user)->postJson('/api/resultgame',[
             "level" =>  "levelOne",
         ]);
+
         $response->assertOk();
+
     }
 
-    public function testItCreateCanGroupteam():void
+
+    public function testItCreateCanResultGame():void
     {
-        $user=User::factory()->create();
+        $user=User::factory()->create();        
+        $teams=Team::factory()->count(16)->create();
         $groups=$this->groupDataFactory();
-        $teams=Team::factory()->count(15)->create();
+        $teamGroup=$this->teamGroupDataFactory();
+        $game=$this->gameDataFactory();
         
-        $response = $this->actingAs($user)->postJson('/api/teamgroup',
-        [
-            "level" =>  "levelOne"
+        $response = $this->actingAs($user)->postJson('/api/resultgame',[
+            "level" =>  "levelOne",
         ]);
-       //$response->dump();
+
         $response->assertOk();
-       // $response->assertSee('EsteNivelOne');
-       // $response->assertStatus(Response::HTTP_CREATED);
-       
+        $response->dump();
+        //$response->assertSee('RestultadoGame');
+
     }
 
     public function groupDataFactory(): void
@@ -81,6 +86,41 @@ class TeamGroupTest extends TestCase
             "name"  => "1_8",
             "level" => 1 ,
             'group' => 8
+        ]);
+    }
+
+    public function teamGroupDataFactory(): void
+    {
+        $teamGroup=TeamGroup::factory()->create([
+            "group_id"  => "1",
+            "team_id" => 1 
+        ]);
+        $teamGroup=TeamGroup::factory()->create([
+            "group_id"  => "1",
+            "team_id" => 2 
+        ]);
+        $teamGroup=TeamGroup::factory()->create([
+            "group_id"  => "1",
+            "team_id" => 3 
+        ]);
+        $teamGroup=TeamGroup::factory()->create([
+            "group_id"  => "1",
+            "team_id" => 4 
+        ]);
+    }
+
+    public function gameDataFactory(): void
+    {
+        $teamGroup=Game::factory()->create([
+            "team_groups_id_A"  => 1,
+            "team_groups_id_B" => 2,
+            "status" => "JuegoCreadoVs" 
+        ]);
+
+        $teamGroup=Game::factory()->create([
+            "team_groups_id_A"  => 3,
+            "team_groups_id_B" => 4 ,
+            "status" => "JuegoCreadoVs" 
         ]);
     }
 }
