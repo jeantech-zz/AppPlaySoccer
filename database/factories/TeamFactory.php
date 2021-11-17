@@ -8,9 +8,10 @@ class TeamFactory extends Factory
 {
     public function definition(): array
     {
+        $country=$this->faker->country();
         return [
-            'name' => $this->faker->name(),
-            'country' =>  $this->faker->country(),
+            'name' =>  $country,
+            'country' =>   $country,
             'image' =>  $this->faker->imageUrl(400, 240),
         ];
     }
