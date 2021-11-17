@@ -24,3 +24,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::name('generate')->get('/GenerateGame/{level}', [GenerateGameController::class, 'generate']);
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Route Hooks - Do not delete//
+	Route::view('result_games', 'livewire.result_games.index')->middleware('auth');
+	Route::view('players', 'livewire.players.index')->middleware('auth');
+	Route::view('teams', 'livewire.teams.index')->middleware('auth');
