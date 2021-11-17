@@ -13,16 +13,17 @@ use App\Repositories\GameRepositories;
 use App\Repositories\GroupRepositories;
 use App\Repositories\TeamRepositories;
 use App\Repositories\TeamGroupRepositories;
+use App\Repositories\ResultGameRepositories;
 use App\Strategies\GenerationGroupInterface;
 
 
 class LevelOne  implements GenerationGroupInterface {
-
     
     private GameRepositories $gameRepositories;
     private GroupRepositories $groupRepositories;    
     private TeamGroupRepositories $teamGroupRepositories;
     private TeamRepositories $teamRepositories;
+    private ResultGameRepositories $resultGameRepositories;
     
 
     public function __construct(){
@@ -30,6 +31,7 @@ class LevelOne  implements GenerationGroupInterface {
         $this->groupRepositories = new GroupRepositories;
         $this->teamGroupRepositories = new TeamGroupRepositories;
         $this->gameRepositories = new GameRepositories;
+        $this->resultGameRepositories = new ResultGameRepositories;
         
     }
 
@@ -125,29 +127,45 @@ class LevelOne  implements GenerationGroupInterface {
 
             if ($goalsForA>$goalsForB){
                 $game= GameUpdateResultAction::execute([
-                    "wins" => $values->team_groups_id_A,
-                    "losses" => $values->team_groups_id_B,
-                    "draws" => "false" ,
-                    "status" => "Played",
+                        "wins" => $values->team_groups_id_A,
+                        "losses" => $values->team_groups_id_B,
+                        "draws" => "false" ,
+                        "status" => "Played",
                 ], $games_id );
                 
             }else if($goalsForB>$goalsForA){
                 $game= GameUpdateResultAction::execute([
-                    "wins" => $values->team_groups_id_B,
-                    "losses" => $values->team_groups_id_A,
-                    "draws" => "false",
-                    "status" => "Played" ,
+                        "wins" => $values->team_groups_id_B,
+                        "losses" => $values->team_groups_id_A,
+                        "draws" => "false",
+                        "status" => "Played" ,
                 ], $games_id );
             }else if($goalsForB==$goalsForA){
-                $game= GameUpdateResultAction::execute([
-                    "wins" => null,
-                    "losses" => null,
-                    "draws" => "true",
-                    "status" => "Played"  ,
-                ], $games_id );
+                if (($redCardsA>$redCardsB) && ($yellowCardsA>$yellowCardsB)){ 
+                    $game= GameUpdateResultAction::execute([
+                        "wins" => $values->team_groups_id_A,
+                        "losses" => $values->team_groups_id_B,
+                        "draws" => "true",
+                        "status" => "Played"  ,
+                    ], $games_id );
+                }else{
+                    $game= GameUpdateResultAction::execute([
+                        "wins" => $values->team_groups_id_B,
+                        "losses" => $values->team_groups_id_A,
+                        "draws" => "true",
+                        "status" => "Played"  ,
+                    ], $games_id );
+                }
             }
 
         }
+
+    }
+
+    public function refreshGenerateGame (){
+        $this->resultGameRepositories->deleteAll();
+        $this->gameRepositories->deleteAll();
+        $this->teamGroupRepositories->deleteAll();
 
     }
 }

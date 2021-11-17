@@ -10,7 +10,6 @@ class GameUpdateResultAction
         $teamgroup = Game::find($id);
         $teamgroup->wins = $data['wins'];
         $teamgroup->losses =  $data['losses'];
-        $teamgroup->draws =  $data['draws'];
         $teamgroup->status =  $data['status'];
 
         $teamgroup->save();

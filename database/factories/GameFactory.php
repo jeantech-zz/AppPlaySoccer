@@ -18,7 +18,6 @@ class GameFactory extends Factory
             'team_groups_id_B' =>  $this->faker->randomElement([1, 2, 3, 4 ]),
             'wins' =>  $this->faker->randomElement([1, 2, 3, 4 ]),
             'losses' =>  $this->faker->randomElement([1, 2, 3, 4 ]),
-            'draws' =>  $this->faker->randomElement(["true","false" ]),
             'status' =>  $this->faker->randomElement(["jugado","programado"]),
         ];
     }
