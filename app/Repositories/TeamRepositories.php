@@ -15,4 +15,6 @@ class TeamRepositories{
        return  $this->model->get();
        //return  $this->model->first();
     }
+
+    
 }

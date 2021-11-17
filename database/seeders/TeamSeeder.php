@@ -10,6 +10,6 @@ class TeamSeeder extends Seeder
     
     public function run():void
     {
-        Team::factory(5)->create();
+        Team::factory(32)->create();
     }
 }

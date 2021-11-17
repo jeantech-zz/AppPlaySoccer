@@ -9,8 +9,9 @@ final class GenerationGroupValues {
 
     public const STRATEGY =  [
         "levelOne" => LevelOne::class,
-        "levelInterMedium" => LevelInterMedium::class,
-        "levelLast" => LevelLast::class,
+        "LevelTwo" => LevelTwo::class,
+        "LevelThree" => LevelThree::class,
+        "LevelFour" => LevelFour::class,
     ];
     
     public const variable = '/dashboard';

@@ -13,7 +13,6 @@ class GameAction
             "team_groups_id_B" =>  null,
             "wins" =>  null,
             "losses" =>   null,
-            "draws" =>   null,
             'status' =>  $data['status'],
         
         ]);

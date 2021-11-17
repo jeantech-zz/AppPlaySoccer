@@ -14,7 +14,6 @@ class CreateGamesTable extends Migration
             $table->foreignId('team_groups_id_B')->nullable()->constrained('team_groups')->onDelete('cascade');
             $table->foreignId('wins')->nullable()->constrained('team_groups')->onDelete('cascade');
             $table->foreignId('losses')->nullable()->constrained('team_groups')->onDelete('cascade');
-            $table->string('draws')->nullable();
             $table->string('status');
             $table->timestamps();
         });

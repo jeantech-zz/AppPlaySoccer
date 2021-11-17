@@ -9,5 +9,8 @@ interface GenerationGroupInterface {
     public function generateGameLevel();
 
     public function generateRestultGameLevel();
+
+    public function refreshGenerateGame();
+    
     
 }

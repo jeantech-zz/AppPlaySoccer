@@ -11,7 +11,7 @@ class CreateResultGamesTable extends Migration
         Schema::create('result_games', function (Blueprint $table) {
             $table->id();
             $table->foreignId('game_id')->nullable()->constrained('games')->onDelete('cascade');
-            $table->foreignId('team_group_id')->nullable()->constrained('teams')->onDelete('cascade');
+            $table->foreignId('team_group_id')->nullable()->constrained('team_groups')->onDelete('cascade');
             $table->integer('goals_for');
             $table->integer('goals_against');
             $table->integer('yellow_cards');
