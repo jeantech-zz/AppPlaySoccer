@@ -43,7 +43,7 @@ class GenerateGameController extends Controller
         $resultGames = $this->resultGameRepositories->all();
         $teamNewLevel=$this->gameRepositories->teamLevel(1);
 
-        $strategyClassLevelTwo = GenerationGroupValues::STRATEGY['levelInterMedium'];
+        $strategyClassLevelTwo = GenerationGroupValues::STRATEGY['levelTwo'];
         $strategyLeveTwo = new $strategyClassLevelTwo;
         $generateTeamTwo=$strategyLeveTwo->generateTeamGroupLevel();
         $generateGameTwo=$strategyLeveTwo->generateGameLevel();
@@ -51,6 +51,8 @@ class GenerateGameController extends Controller
         $teamGroup2 = $this->teamGroupRepositories->teamGroupLevel(2);
         $gamestwo = $this->gameRepositories->gameLevel(2);
         $teamLevelThree=$this->gameRepositories->teamLevel(2);
+
+
 
         return response()->json(['data' =>  [
             "team_group" =>  $teamGroup,

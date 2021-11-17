@@ -1,17 +1,18 @@
 <?php
 namespace App\Values;
 
-use App\Strategies\GenerationGroup\levelInterMedium;
-use App\Strategies\GenerationGroup\levelLast;
 use App\Strategies\GenerationGroup\LevelOne;
+use App\Strategies\GenerationGroup\LevelTwo;
+use App\Strategies\GenerationGroup\LevelThree;
+use App\Strategies\GenerationGroup\LevelFour;
 
 final class GenerationGroupValues {
 
     public const STRATEGY =  [
         "levelOne" => LevelOne::class,
-        "LevelTwo" => LevelTwo::class,
-        "LevelThree" => LevelThree::class,
-        "LevelFour" => LevelFour::class,
+        "levelTwo" => LevelTwo::class,
+        "levelThree" => LevelThree::class,
+        "levelFour" => LevelFour::class,
     ];
     
     public const variable = '/dashboard';
