@@ -46,7 +46,7 @@
                             <a href="{{ url('/teams') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Teams</a> 
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/report1') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> resultGames</a> 
+                            <a href="{{ url('/reportes') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> resultGames</a> 
                         </li>
                     </ul>
 					@endauth()

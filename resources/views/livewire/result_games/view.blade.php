@@ -18,15 +18,11 @@
 						<div>
 							<input wire:model='keyWord' type="text" class="form-control" name="search" id="search" placeholder="Search Result Games">
 						</div>
-						<div class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModal">
-						<i class="fa fa-plus"></i>  Add Result Games
-						</div>
+						
 					</div>
 				</div>
 				
 				<div class="card-body">
-						@include('livewire.result_games.create')
-						@include('livewire.result_games.update')
 				<div class="table-responsive">
 					<table class="table table-bordered table-sm">
 						<thead class="thead">
@@ -38,7 +34,6 @@
 								<th>Goals Against</th>
 								<th>Yellow Cards</th>
 								<th>Red Cards</th>
-								<td>ACTIONS</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -46,21 +41,12 @@
 							<tr>
 								<td>{{ $loop->iteration }}</td> 
 								<td>{{ $row->game_id }}</td>
-								<td>{{ $row->team_group_id }}</td>
+								<td>{{ $row->team_name }}</td>
 								<td>{{ $row->goals_for }}</td>
 								<td>{{ $row->goals_against }}</td>
 								<td>{{ $row->yellow_cards }}</td>
 								<td>{{ $row->red_cards }}</td>
 								<td width="90">
-								<div class="btn-group">
-									<button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Actions
-									</button>
-									<div class="dropdown-menu dropdown-menu-right">
-									<a data-toggle="modal" data-target="#updateModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i> Edit </a>							 
-									<a class="dropdown-item" onclick="confirm('Confirm Delete Result Game id {{$row->id}}? \nDeleted Result Games cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i> Delete </a>   
-									</div>
-								</div>
 								</td>
 							@endforeach
 						</tbody>
