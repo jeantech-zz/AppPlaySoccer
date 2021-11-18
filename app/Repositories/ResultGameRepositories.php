@@ -42,7 +42,9 @@ class ResultGameRepositories{
         ->join('team_groups', 'team_groups.id', '=', 'result_games.team_group_id')
         ->join('teams', 'teams.id', '=', 'team_groups.team_id')
         ->join('groups', 'groups.id', '=', 'team_groups.group_id')
-        ->select('result_games.*','teams.name AS team_name', 'groups.level AS groups_level')
+        ->select('result_games.*','teams.name AS team_name','teams.country AS team_country', 'groups.level AS groups_level')
+        ->orderBy('groups.level', 'desc')
+        ->distinct(['teams.name'])
         ->paginate(10);
      }
 }

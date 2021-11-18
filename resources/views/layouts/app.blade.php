@@ -44,13 +44,16 @@
                             <a href="{{ url('/teams') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Teams</a> 
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/result_games') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Result_games</a> 
+                            <a href="{{ url('/result_games') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Result Games</a> 
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/team_against') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> team_against</a> 
+                            <a href="{{ url('/team_against') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Team Against</a> 
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/abstracts') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> abstracts</a> 
+                            <a href="{{ url('/abstracts') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Abstracts</a> 
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/positions') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Positions</a> 
                         </li>
                     </ul>
 					@endauth()
