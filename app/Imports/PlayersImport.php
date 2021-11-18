@@ -21,7 +21,7 @@ class PlayersImport implements ToModel
             'position' => $row[3],
             'shirt_number' => $row[4],
             'image' => $row[5],
-            'team_id' => $row[3]
+            'team_id' => 1
         ]);
     }
 }

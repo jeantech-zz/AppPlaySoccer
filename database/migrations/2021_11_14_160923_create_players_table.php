@@ -21,7 +21,7 @@ class CreatePlayersTable extends Migration
             $table->string('position');
             $table->string('shirt_number');
             $table->string('image');
-            $table->foreignId('team_id')->constrained('teams')->onDelete('cascade');
+            $table->foreignId('team_id')->nullable()->constrained('teams')->onDelete('cascade');
             $table->timestamps();
         });
     }
