@@ -30,9 +30,9 @@ class GenerateGameController extends Controller
     }
 
 
-    public function generate (Request $request){
+    public function generate (){
 
-        $strategyClass = GenerationGroupValues::STRATEGY[$request->level];
+        $strategyClass = GenerationGroupValues::STRATEGY["levelOne"];
         $strategy = new $strategyClass;
         $refreshGame=$strategy->refreshGenerateGame();
         $generateTeam=$strategy->generateTeamGroupLevel();

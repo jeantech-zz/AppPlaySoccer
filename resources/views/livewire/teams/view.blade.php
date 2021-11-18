@@ -24,6 +24,11 @@
 						<div class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalLoad">
 						<i class="fa fa-plus"></i>  Load Teams
 						</div>
+
+						<div class="btn btn-sm btn-info" >
+						
+						<a  onclick="confirm('Confirm Generate Game  ')||event.stopImmediatePropagation()" wire:click="generate('levelOne')"><i class="fa fa-plus "></i> Generate Game </a>   
+						</div>
 					</div>
 				</div>
 				

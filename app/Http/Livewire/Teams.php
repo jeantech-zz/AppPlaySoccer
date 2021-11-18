@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Imports\TeamsImport;
+use App\Http\Controllers\GenerateGameController;
 use App\Models\Team;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\TeamsImport;
+
 
 class Teams extends Component
 {
@@ -125,6 +127,13 @@ class Teams extends Component
 
         $this->emit('closeModal');
 		session()->flash('message', 'Team Successfully created.');
+    }
+
+    public function generate ($level){
+
+        $generate = new GenerateGameController;
+        $generateGame= $generate->generate($level);
+
     }
     
 }
