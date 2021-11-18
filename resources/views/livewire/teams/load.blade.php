@@ -3,23 +3,21 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create New Team</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create New Player</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true close-btn">×</span>
                 </button>
             </div>
            <div class="modal-body">
-           <form wire:submit.prevent="save">
-                    <input type="file" wire:model="photo">
-                
-                    @error('photo') <span class="error">{{ $message }}</span> @enderror
-                
-                    <button type="submit">Save Photo</button>
+           <form wire:submit.prevent="save"
+           enctype="multipart/form-data"
+           >
+            <input type="file" wire:model="load">  @error('load') <span class="error">{{ $message }}</span> @enderror
             </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Close</button>
-                <button type="button" wire:click.prevent="store()" class="btn btn-primary close-modal">Save</button>
+                <button type="button" wire:click.prevent="load()" class="btn btn-primary close-modal">Load</button>
             </div>
         </div>
     </div>
