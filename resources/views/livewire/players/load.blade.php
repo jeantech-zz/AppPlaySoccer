@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create New Team</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create New Player</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true close-btn">×</span>
                 </button>
@@ -12,7 +12,7 @@
            <form wire:submit.prevent="save"
            enctype="multipart/form-data"
            >
-            <input type="file" wire:model="load">  @error('photo') <span class="error">{{ $message }}</span> @enderror
+            <input type="file" wire:model="load">  @error('load') <span class="error">{{ $message }}</span> @enderror
             </form>
             </div>
             <div class="modal-footer">
