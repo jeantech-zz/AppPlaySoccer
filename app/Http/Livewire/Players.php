@@ -2,17 +2,23 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
-use Livewire\WithPagination;
 use App\Models\Player;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\PlayersImport;
+
 
 class Players extends Component
 {
     use WithPagination;
+	use WithFileUploads;
 
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $name, $nationality, $age, $position, $shirt_number, $image, $team_id;
     public $updateMode = false;
+	public $load;
 
     public function render()
     {
@@ -126,5 +132,33 @@ class Players extends Component
             $record = Player::where('id', $id);
             $record->delete();
         }
+    }
+
+	public function load()
+    {
+        $file= $this->validate([
+            'load' => 'max:1024', // 1MB Max
+        ]);
+
+        $csvFileName=$this->load->store('public');
+
+        $playerImport=Excel::import(new PlayersImport, $csvFileName);
+
+		$team_id=1;
+        foreach ($playerImport as $player) {   
+			$team_id=1;        
+			Player::create([ 
+				'name' => $player->name,
+				'nationality' => $player->nationality,
+				'age' => $player->age,
+				'position' => $player->position,
+				'shirt_number' => $player->shirt_number,
+				'image' => $player->image,
+				'team_id' => $player->position
+			]);
+        }
+
+        $this->emit('closeModal');
+		session()->flash('message', 'Player Successfully created.');
     }
 }

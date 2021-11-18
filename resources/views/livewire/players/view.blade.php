@@ -21,12 +21,16 @@
 						<div class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModal">
 						<i class="fa fa-plus"></i>  Add Players
 						</div>
+						<div class="btn btn-sm btn-info" data-toggle="modal" data-target="#modalLoad">
+						<i class="fa fa-plus"></i>  Load Players
+						</div>
 					</div>
 				</div>
 				
 				<div class="card-body">
 						@include('livewire.players.create')
 						@include('livewire.players.update')
+						@include('livewire.players.load')
 				<div class="table-responsive">
 					<table class="table table-bordered table-sm">
 						<thead class="thead">
