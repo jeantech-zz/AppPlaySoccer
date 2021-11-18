@@ -34,3 +34,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 	Route::view('players', 'livewire.players.index')->middleware('auth');
 	Route::view('teams', 'livewire.teams.index')->middleware('auth');
     Route::view('team_against', 'livewire.team_against.index')->middleware('auth');
+    Route::view('abstracts', 'livewire.abstracts.index')->middleware('auth');
+
+    

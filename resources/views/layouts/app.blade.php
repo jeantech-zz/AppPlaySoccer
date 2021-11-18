@@ -36,9 +36,7 @@
 					@auth()
                     <ul class="navbar-nav mr-auto">
 						<!--Nav Bar Hooks - Do not delete!!-->
-						<li class="nav-item">
-                            <a href="{{ url('/result_games') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Result_games</a> 
-                        </li>						
+												
 						<li class="nav-item">
                             <a href="{{ url('/players') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Players</a> 
                         </li>
@@ -46,7 +44,13 @@
                             <a href="{{ url('/teams') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Teams</a> 
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/reportes') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> resultGames</a> 
+                            <a href="{{ url('/result_games') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Result_games</a> 
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/team_against') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> team_against</a> 
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/abstracts') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> abstracts</a> 
                         </li>
                     </ul>
 					@endauth()

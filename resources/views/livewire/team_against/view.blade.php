@@ -1,4 +1,4 @@
-@section('title', __('Result Games'))
+@section('title', __('Result Against'))
 <div class="container-fluid">
 	<div class="row justify-content-center">
 		<div class="col-md-12">
@@ -7,10 +7,7 @@
 					<div style="display: flex; justify-content: space-between; align-items: center;">
 						<div class="float-left">
 							<h4><i class="fab fa-laravel text-info"></i>
-							Result Game Listing </h4>
-						</div>
-						<div wire:poll.60s>
-							<code><h5>{{ now()->format('H:i:s') }} UTC</h5></code>
+							Result Game Against </h4>
 						</div>
 						@if (session()->has('message'))
 						<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
@@ -29,11 +26,9 @@
 							<tr> 
 								<td>#</td> 
 								<th>Game Id</th>
-								<th>Team Group Id</th>
-								<th>Goals For</th>
-								<th>Goals Against</th>
-								<th>Yellow Cards</th>
-								<th>Red Cards</th>
+								<th>Team </th>
+								<th>Country</th>
+								<th>Level Against</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -42,10 +37,9 @@
 								<td>{{ $loop->iteration }}</td> 
 								<td>{{ $row->game_id }}</td>
 								<td>{{ $row->team_name }}</td>
-								<td>{{ $row->goals_for }}</td>
-								<td>{{ $row->goals_against }}</td>
-								<td>{{ $row->yellow_cards }}</td>
-								<td>{{ $row->red_cards }}</td>
+								<td>{{ $row->team_country }}</td>
+								<td>{{ $row->groups_level }}</td>
+					
 								</td>
 							@endforeach
 						</tbody>

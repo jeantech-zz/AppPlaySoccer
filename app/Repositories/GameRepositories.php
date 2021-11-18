@@ -46,4 +46,17 @@ class GameRepositories{
         ->get();
     }
 
+    public function teamLevelLosses(){
+        return  $this->model
+        ->join('team_groups', 'team_groups.id', '=', 'games.losses' )
+        ->join('result_games', 'result_games.team_group_id', '=', 'games.losses')
+        ->join('groups', 'groups.id', '=', 'team_groups.group_id')
+        ->join('teams', 'teams.id', '=', 'team_groups.team_id')
+        ->select('teams.name AS team_name','teams.country AS team_country','games.id AS game_id', 'groups.level AS groups_level')
+        ->orderBy('groups.id')
+        ->orderBy('result_games.goals_against','desc')
+        ->paginate(10);
+    }
+    
+
 }
