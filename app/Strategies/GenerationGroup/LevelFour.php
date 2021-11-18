@@ -30,7 +30,7 @@ class LevelFour  implements GenerationGroupInterface {
         $this->gameRepositories = new GameRepositories;
     }
 
-    public function generateTeamGroupLevel() 
+    public function generateTeamGroupLevel():void
     {
         $teams=$this->gameRepositories->teamLevel(3);
 
@@ -56,9 +56,9 @@ class LevelFour  implements GenerationGroupInterface {
                 $j++;       
             }              
         }
-        return $teams;
     }
-    public function generateGameLevel() :void
+
+    public function generateGameLevel():void
     {
         $teamgroups = $this->teamGroupRepositories->teamGroupLevel(4);
 
@@ -83,7 +83,6 @@ class LevelFour  implements GenerationGroupInterface {
             }  
         }
     }
-
     
     public function generateRestultGameLevel() :void
     {
